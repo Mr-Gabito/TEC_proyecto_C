@@ -1,30 +1,30 @@
+#ifndef LIBRO_H
+#define LIBRO_H
 #include <iostream>
 
 class Book {
     private:
+    int id;
     std::string title;
-    std::string id;
-    std::string genre;
-    float price;
     int num_pag;
     
     public:
     //constructors
     Book(){
+        id = 0;
         title = "undefined";
-        id = "undefined";
-        genre = "undefined";
-        price = 0.0;
         num_pag = 0;
     };
-    Book (std::string titlee, std::string idd, std::string genree, float pricee, int num_pagg){
+    Book (int n, std::string titlee, int num_pagg){
+        id = n;
         title = titlee;
-        id = idd;
-        genre = genree;
-        price = pricee;
         num_pag = num_pagg;
     };
     //getters and setters
+    int getID(){
+        return id;
+    };
+
     std::string get_title(){
         return title;
     };
@@ -32,61 +32,27 @@ class Book {
         title = titlee;
     };
     
-
-    std::string get_id(){
-        return id;
-    };
-    void set_id(std::string idd){
-        id = idd;
-    };
-
-
-    std::string get_genre(){
-        return genre;
-    };
-    void set_genre(std::string genree){
-        genre = genree;
-    };
-
-
-    float get_price(){
-        return price;
-    };
-    void set_price(float pricee){
-        price = pricee;
-    };
-
-
     int get_num_pag(){
         return num_pag;
     };
-    int set_num_pag(int num_pagg){
+    void set_num_pag(int num_pagg){
         num_pag = num_pagg;
-    };
-
-    
-
-    void print_book(){
-        std::cout << "Title: " << title << std::endl;
-        std::cout << "ID: " << id << std::endl;
-        std::cout << "Genre: " << genre << std::endl;
-        std::cout << "Price: " << price << std::endl;
-        std::cout << "Number of pages: " << num_pag << std::endl;
-
     };
 };
 
 
+
+
 class Softcover: public Book{
     private:
-    bool special_eds;
+    bool special_eds = false;
 
     public:
-    bool get_specials;
-    bool set_specials;
+    Softcover(): Book(){};
+    Softcover(int id, std::string title, int num_pag): Book(id, title, num_pag){};
 
     float calc_price(float price, int num_pag, bool get_specials){
-        if (get_specials = false){
+        if (!get_specials){
             price = price + num_pag + 50;
             std::cout << "No extra price on the book" << std::endl;
             std::cout << "Price: " << price << std::endl;
@@ -95,6 +61,7 @@ class Softcover: public Book{
             price = (price + num_pag + 50)*1.3;
             std::cout << "Special edition price: " << price << std::endl;
         }
+        return price;
     };
 };
 
@@ -103,11 +70,11 @@ class Hardcover: public Book{
     bool special_edh;
 
     public:
-    bool get_specialh;
-    bool set_specialh;
+    Hardcover(): Book(){};
+    Hardcover(int id, std::string title, int num_pag): Book(id, title, num_pag){};
 
     float calc_price(float price, int num_pag, bool get_specialh){
-        if (get_specialh = false){
+        if (!get_specialh){
             price = price + num_pag + 50;
             std::cout << "No extra price on the book" << std::endl;
             std::cout << "Price: " << price << std::endl;
@@ -116,6 +83,7 @@ class Hardcover: public Book{
             price = (price + num_pag + 50)*1.5;
             std::cout << "Special edition price: " << price << std::endl;
         }
+        return price;
     };
 };
 
@@ -124,11 +92,11 @@ class Digital: public Book{
     bool audio;
 
     public:
-    bool get_audio;
-    bool set_audio;
+    Digital(): Book(){};
+    Digital(int id, std::string title, int num_pag): Book(id, title, num_pag){};
 
     float calc_price(float price, int num_pag, bool get_audio){
-        if (get_audio = false){
+        if (!get_audio){
             price = (price + num_pag + 50)*0.9;
             std::cout << "Price: " << price << std::endl;
         }
@@ -136,5 +104,7 @@ class Digital: public Book{
             price = (price + num_pag + 50)*1.035;
             std::cout << "Audiobook price: " << price << std::endl;
         }
+        return price;
     };
 };
+#endif
