@@ -6,12 +6,11 @@
 #define MAX 100
 
 class Inventory{
-    private: 
+    public:
     Softcover bookS[MAX];
     Hardcover bookH[MAX];
     Digital bookD[MAX];
     int ibookS, ibookH, ibookD;
-    public:
     Inventory();
 
     void createSoftlist();
@@ -45,32 +44,32 @@ void Inventory::createSoftlist(){
 };
 
 void Inventory::createHardlist(){
-    bookH[0] = Hardcover(ibookH, "The Hobbit", 366);
+    bookH[0] = Hardcover(ibookH + 1, "The Hobbit", 366);
     ibookH += 1;
-    bookH[1] = Hardcover(ibookH, "The Golden Compass", 399);
+    bookH[1] = Hardcover(ibookH + 1, "The Golden Compass", 399);
     ibookH += 1;
-    bookH[2] = Hardcover(ibookH, "Frankenstein", 260);
+    bookH[2] = Hardcover(ibookH + 1, "Frankenstein", 260);
     ibookH += 1;
-    bookH[3] = Hardcover(ibookH, "The Picture of Dorian Gray", 253);
+    bookH[3] = Hardcover(ibookH + 1, "The Picture of Dorian Gray", 253);
     ibookH += 1;
-    bookH[4] = Hardcover(ibookH, "The King in Yellow", 224);
+    bookH[4] = Hardcover(ibookH + 1, "The King in Yellow", 224);
     ibookH += 1;
-    bookH[5] = Hardcover(ibookH, "The Girl with the Dragon Tattoo", 480);
+    bookH[5] = Hardcover(ibookH + 1, "The Girl with the Dragon Tattoo", 480);
     ibookH += 1;
 };
 
 void Inventory::createDigitallist(){
-    bookD[0] = Digital(ibookD, "The Martian", 384);
+    bookD[0] = Digital(ibookD + 1, "The Martian", 384);
     ibookD += 1;
-    bookD[1] = Digital(ibookD, "Project Hail Mary", 476);
+    bookD[1] = Digital(ibookD + 1, "Project Hail Mary", 476);
     ibookD += 1;
-    bookD[2] = Digital(ibookD, "The Girl Who Drank the Moon", 388);
+    bookD[2] = Digital(ibookD + 1, "The Girl Who Drank the Moon", 388);
     ibookD += 1;
-    bookD[3] = Digital(ibookD, "1984", 368);
+    bookD[3] = Digital(ibookD + 1, "1984", 368);
     ibookD += 1;
-    bookD[4] = Digital(ibookD, "The Book Thief", 592);
+    bookD[4] = Digital(ibookD + 1, "The Book Thief", 592);
     ibookD += 1;
-    bookD[5] = Digital(ibookD, "Little Women", 449);
+    bookD[5] = Digital(ibookD + 1, "Little Women", 449);
     ibookD += 1;
 };
 
@@ -100,19 +99,19 @@ void Inventory::showDigital(){
 
 void Inventory::addBook(int option, std::string title, int num_pag){
     if(option == 1){
-        ibookS += 1;
         Softcover aux(ibookS + 1, title, num_pag);
         bookS[ibookS] = aux;
+        ibookS++;
     }
     else if(option == 2){
-        ibookH += 1;
-        Hardcover aux(ibookH, title, num_pag);
+        Hardcover aux(ibookH + 1, title, num_pag);
         bookH[ibookH] = aux;
+        ibookH++;
     }
     else{
-        ibookD += 1;
-        Digital aux(ibookD, title, num_pag);
+        Digital aux(ibookD + 1, title, num_pag);
         bookD[ibookD] = aux;
+        ibookD++;
     }
 }
 #endif

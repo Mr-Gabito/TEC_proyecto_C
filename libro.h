@@ -7,6 +7,7 @@ class Book {
     int id;
     std::string title;
     int num_pag;
+    float price;
     
     public:
     //constructors
@@ -38,6 +39,13 @@ class Book {
     void set_num_pag(int num_pagg){
         num_pag = num_pagg;
     };
+
+    float get_price(){
+        return price;
+    }
+    void set_price(float p){
+        price = p;
+    }
 };
 
 
@@ -54,13 +62,11 @@ class Softcover: public Book{
     float calc_price(float price, int num_pag, bool get_specials){
         if (!get_specials){
             price = price + num_pag + 50;
-            std::cout << "No extra price on the book" << std::endl;
-            std::cout << "Price: " << price << std::endl;
         }
         else{
             price = (price + num_pag + 50)*1.3;
-            std::cout << "Special edition price: " << price << std::endl;
         }
+        set_price(price);
         return price;
     };
 };
@@ -76,13 +82,11 @@ class Hardcover: public Book{
     float calc_price(float price, int num_pag, bool get_specialh){
         if (!get_specialh){
             price = price + num_pag + 50;
-            std::cout << "No extra price on the book" << std::endl;
-            std::cout << "Price: " << price << std::endl;
         }
         else{
             price = (price + num_pag + 50)*1.5;
-            std::cout << "Special edition price: " << price << std::endl;
         }
+        set_price(price);
         return price;
     };
 };
@@ -98,12 +102,11 @@ class Digital: public Book{
     float calc_price(float price, int num_pag, bool get_audio){
         if (!get_audio){
             price = (price + num_pag + 50)*0.9;
-            std::cout << "Price: " << price << std::endl;
         }
         else{
             price = (price + num_pag + 50)*1.035;
-            std::cout << "Audiobook price: " << price << std::endl;
         }
+        set_price(price);
         return price;
     };
 };
