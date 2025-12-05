@@ -15,9 +15,9 @@ class Book {
     float price;
     
     public:
-    // los constructores de la clase Book serian los getters y los
-    // setters de cada atributo 
-    // y el constructor por defecto y el constructor con parametros
+    // los constructores de la clase Book serian 
+    // el constructor por defecto y el constructor con parametros
+    // y se agregan los getters y los setters
     Book(){
         id = 0;
         title = "undefined";
