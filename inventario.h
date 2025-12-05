@@ -1,10 +1,15 @@
-
+// se incluye libro.h para utilizar las clases de los libros
 #ifndef INVENTARIO_H
 #define INVENTARIO_H
 #include "libro.h"
 #include <iostream>
 #define MAX 100
 
+
+// en la clase Inventory se crean los arreglos para cada tipo de libro
+// y se definen sus metodos
+// los atributos de la clase Inventory serian los arreglos de Softcover,
+// Hardcover y Digital y los contadores de cada arreglo
 class Inventory{
     public:
     Softcover bookS[MAX];
@@ -13,6 +18,11 @@ class Inventory{
     int ibookS, ibookH, ibookD;
     Inventory();
 
+    // los metodos de la clase Inventory serian crear
+    // la lista de los diferentes libros, 
+    // mostrar la lista de los diferentes libros y agregar un libro
+    // se puede agregar un libro dependiendo del
+    // tipo de libro que se quiera agregar
     void createSoftlist();
     void createHardlist();
     void createDigitallist();
@@ -22,12 +32,17 @@ class Inventory{
     void addBook(int option, std::string title, int num_pag);
 };
 
+// se definen los metodos de la clase Inventory
+// el constructor por defecto inicializa
+// los contadores de cada arreglo en 0
 Inventory::Inventory(){
     ibookS = 0;
     ibookH = 0;
     ibookD = 0;
 }
 
+// se crean las listas de los diferentes tipos de libros
+// con algunos libros predefinidos
 void Inventory::createSoftlist(){
     bookS[0] = Softcover(ibookS + 1, "The Little Prince", 96);
     ibookS += 1;
@@ -73,6 +88,7 @@ void Inventory::createDigitallist(){
     ibookD += 1;
 };
 
+// se muestran las listas de los diferentes tipos de libros
 void Inventory::showSoft(){
     for(int i = 0; i < ibookS; i++){
         std::cout << "ID: " << bookS[i].getID() << std::endl;
@@ -97,6 +113,8 @@ void Inventory::showDigital(){
     }
 }
 
+// se agrega un libro a cualquier arreglo dependiendo
+// del tipo de libro que se quiera agregar
 void Inventory::addBook(int option, std::string title, int num_pag){
     if(option == 1){
         Softcover aux(ibookS + 1, title, num_pag);
